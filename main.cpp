@@ -7,14 +7,31 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <string>
 using namespace std;
+
+#include "Sintactico.h"
+
 
 /*
  * 
  */
-int main(int argc, char** argv)
+
+int main(int argc, char *argv[])
 {
-    cout<<"Hola mundo!";
+    for(;;)
+    {
+        cout<<"\n> ";
+        string query="";
+        std::getline(std::cin, query);
+        if(query=="salir")
+            break;
+        Lexico *l=new Lexico(query);
+        Sintactico s;
+        if(s.analizarSelect(l))
+            cout<<"Sintaxis correcta"<<endl;
+        else
+            cout<<"Sintaxis incorrecta"<<endl;
+    }
     return 0;
 }
-
