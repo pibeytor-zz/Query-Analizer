@@ -10,8 +10,6 @@
 # Environment
 MKDIR=mkdir
 CP=cp
-GREP=grep
-NM=nm
 CCADMIN=CCadmin
 RANLIB=ranlib
 CC=gcc
@@ -33,11 +31,10 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/Token.o \
+	${OBJECTDIR}/Sintactico.o \
 	${OBJECTDIR}/Lexico.o \
-	${OBJECTDIR}/Sintactico.o
-
+	${OBJECTDIR}/Token.o \
+	${OBJECTDIR}/main.o
 
 # C Compiler Flags
 CFLAGS=
@@ -57,31 +54,31 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/GNU-Linux-x86/queryanal
+	${MAKE}  -f nbproject/Makefile-Release.mk dist/Release/GNU-Linux-x86/cppapplication_1
 
-dist/Release/GNU-Linux-x86/queryanal: ${OBJECTFILES}
+dist/Release/GNU-Linux-x86/cppapplication_1: ${OBJECTFILES}
 	${MKDIR} -p dist/Release/GNU-Linux-x86
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/queryanal ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cppapplication_1 ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
-${OBJECTDIR}/main.o: main.cpp 
+${OBJECTDIR}/Sintactico.o: nbproject/Makefile-${CND_CONF}.mk Sintactico.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Sintactico.o Sintactico.cpp
 
-${OBJECTDIR}/Token.o: Token.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Token.o Token.cpp
-
-${OBJECTDIR}/Lexico.o: Lexico.cpp 
+${OBJECTDIR}/Lexico.o: nbproject/Makefile-${CND_CONF}.mk Lexico.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Lexico.o Lexico.cpp
 
-${OBJECTDIR}/Sintactico.o: Sintactico.cpp 
+${OBJECTDIR}/Token.o: nbproject/Makefile-${CND_CONF}.mk Token.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Sintactico.o Sintactico.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Token.o Token.cpp
+
+${OBJECTDIR}/main.o: nbproject/Makefile-${CND_CONF}.mk main.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -89,7 +86,7 @@ ${OBJECTDIR}/Sintactico.o: Sintactico.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Release
-	${RM} dist/Release/GNU-Linux-x86/queryanal
+	${RM} dist/Release/GNU-Linux-x86/cppapplication_1
 
 # Subprojects
 .clean-subprojects:

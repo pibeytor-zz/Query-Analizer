@@ -14,3 +14,5 @@ Nota: SELECT, FROM y WHERE son mayusculas.
 * Este esquema es temporal porque se sigue a la espera de la definicion del proyecto.
 
 * Que bonito este README.
+
+* Manuel probando commit
