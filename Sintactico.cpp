@@ -11,6 +11,15 @@ void Sintactico::resetIterador()
 {
     lexico->resetIterador();
 }
+int Sintactico::getIterador()
+{
+    return lexico->getIterador();
+}
+
+void Sintactico::setIterador(int iterador)
+{
+    lexico->setIterador(iterador);
+}
 
 Token Sintactico::getToken()
 {
@@ -35,99 +44,9 @@ bool Sintactico::analizarSelect(Lexico *lexico)
 
 bool Sintactico::S()
 {
-    for(int i=0;i<lexico->tokens.size();i++)
-        cout<<lexico->tokens[i].lexema<<endl;
-    if(!select())
-        return false;
-    if(!from())
-        return false;
-    if(!where())
-        return false;
-    return !quedanTokens();
-}
-
-bool Sintactico::select()
-{
-    int i_temp=lexico->iterador;
-    if(getToken().lexema=="SELECT")
-        nextToken();
-    else
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-
-    if(!campos())
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-    return true;
-}
-
-bool Sintactico::from()
-{
-    int i_temp=lexico->iterador;
-    if(getToken().lexema=="FROM")
-        nextToken();
-    else
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-
-    if(!tablas())
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-    return true;
-}
-
-bool Sintactico::where()
-{
-    int i_temp=lexico->iterador;
-    if(getToken().lexema=="WHERE")
-        nextToken();
-    else
-    {
-        lexico->iterador=i_temp;
-        return true;
-    }
-
-    if(!validaciones())
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-    return true;
-}
-
-bool Sintactico::campos()
-{
-    int i_temp=lexico->iterador;
-    nextToken();
-    return true;
-}
-
-bool Sintactico::tablas()
-{
-    int i_temp=lexico->iterador;
-    nextToken();
-    return true;
-}
-
-bool Sintactico::validaciones()
-{
-    int i_temp=lexico->iterador;
-    //nextToken();
-    if(nextToken().lexema!="=")
-    {
-        lexico->iterador=i_temp;
-        return false;
-    }
-    if(nextToken().lexema=="")
-        return false;
-    nextToken();
+    Token t=getToken();
+    t=nextToken();
+    //etc...
+    //TODO
     return true;
 }

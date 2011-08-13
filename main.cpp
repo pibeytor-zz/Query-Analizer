@@ -21,12 +21,23 @@ int main(int argc, char *argv[])
 {
     for(;;)
     {
+        //Captura de sentencia SQL
         cout<<"\n> ";
         string query="";
         std::getline(std::cin, query);
         if(query=="salir")
             break;
+
+        //Analisis lexico
         Lexico *l=new Lexico(query);
+        l->printTokens();
+        if(!l->correcto())
+        {
+            cout<<"Lexico incorrecto, la sentencia no pudo ejecutar."<<endl;
+            continue;
+        }
+
+        //Analisis sintactico
         Sintactico s;
         if(s.analizarSelect(l))
             cout<<"Sintaxis correcta"<<endl;

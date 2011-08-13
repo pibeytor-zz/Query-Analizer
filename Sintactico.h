@@ -10,25 +10,16 @@ using namespace std;
 class Sintactico {
 public:
     Lexico *lexico;
-    bool analizarSelect(Lexico *lexico);
+    //manejo de iterador acutal
     void resetIterador();
+    int getIterador();
+    void setIterador(int iterador);
+    //manejo de tokens actuales
     Token getToken();
     Token nextToken();
     bool quedanTokens();
 
+    //TODO
+    bool analizarSelect(Lexico *lexico);
     bool S();
-    bool select();
-    bool from();
-    bool where();
-    bool campos();
-    bool listaDeCampos();
-    bool tablas();
-    bool validaciones();
-    bool validacion();
-    bool expIzq();
-    bool expDer();
-    bool campo();
-    bool tabla();
-    bool opLogico();
-    bool opRel();
 };
