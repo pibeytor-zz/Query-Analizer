@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.cpp
  * Author: userr
  *
@@ -14,7 +14,7 @@ using namespace std;
 
 
 /*
- * 
+ *
  */
 
 int main(int argc, char *argv[])

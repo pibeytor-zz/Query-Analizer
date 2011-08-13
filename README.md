@@ -18,3 +18,6 @@ Nota: SELECT, FROM y WHERE son mayusculas.
 * Manuel probando commit
 
 * Ahmed probando commit
+
+* Alfredo probando commit
+

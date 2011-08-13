@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Sintactico.cpp
  * Author: userr
- * 
+ *
  * Created on July 24, 2011, 10:51 PM
  */
 
@@ -45,8 +45,45 @@ bool Sintactico::analizarSelect(Lexico *lexico)
 bool Sintactico::S()
 {
     Token t=getToken();
+    if(t.lexema!="select" || t.tipo!="palabra reservada")
+        return false;
+
     t=nextToken();
-    //etc...
-    //TODO
+
+    if(!Campo())
+        return false;
+
     return true;
+}
+
+bool Sintactico::Campo()
+{
+    Token t=getToken();
+    int pos_temp=getIterador();
+    bool correcto=true;
+    if(t.tipo!="puntuacion" && t.lexema!="*")
+        correcto=false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!=",")
+        correcto=false;
+    t=nextToken();
+    if(t.tipo!="id")
+        correcto=false;
+    t=nextToken();
+    if(correcto==true)
+        return true;
+
+    correcto=true;
+    setIterador(pos_temp);
+    t=getToken();
+    if(t.tipo!="id")
+        correcto=false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!=",")
+        correcto=false;
+    t=nextToken();
+    if(t.tipo!="id")
+        correcto=false;
+    t=nextToken();
+    return correcto;
 }

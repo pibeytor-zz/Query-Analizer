@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Sintactico.h
  * Author: userr
  *
@@ -22,4 +22,5 @@ public:
     //TODO
     bool analizarSelect(Lexico *lexico);
     bool S();
+    bool Campo();
 };
