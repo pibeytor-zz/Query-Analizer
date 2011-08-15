@@ -20,6 +20,7 @@ Lexico::Lexico(string query)
     palabras_reservadas.push_back("update");
     palabras_reservadas.push_back("set");
     palabras_reservadas.push_back("null");
+    palabras_reservadas.push_back("as");
 
     puntuacion.push_back("(");
     puntuacion.push_back(")");
@@ -97,42 +98,44 @@ bool Lexico::esId(string a)
 {
     int i;
     //si comienza con un numero
-    if(a[0]<=57 && a[0]>=48)
+    if(esNumeroAscii(a[0]))
         return false;
     for(i=0;i<getLength(a);i++)
-        if(!esCaracterAscii(a[i])&&!esNumeroAscii(a[i]))
+        if(!esCaracterAscii(a[i])&&!esNumeroAscii(a[i])&&a[i]!='_')
             return false;
     return true;
 }
 
-string Lexico::getTipo(string lexema)
+Token Lexico::getTipo(string lexema)
 {
-    if(unsensitiveCompare(lexema,"true") || unsensitiveCompare(lexema,"false"))
-        return "booleano";
+    if(unsensitiveCompare(lexema,"true"))
+        return Token("booleano","true");
+    if(unsensitiveCompare(lexema,"false"))
+        return Token("booleano","false");
     for(int i=0;i<palabras_reservadas.size();i++)
         if(unsensitiveCompare(lexema,palabras_reservadas[i]))
-                return "palabra reservada";
+                return Token("palabra reservada",palabras_reservadas[i]);
     for(int i=0;i<operadores_logicos.size();i++)
         if(unsensitiveCompare(lexema,operadores_logicos[i]))
-                return "operador logico";
+                return Token("operador logico",lexema);
     for(int i=0;i<puntuacion.size();i++)
         if(lexema==puntuacion[i])
-                return "puntuacion";
+                return Token("puntuacion",lexema);
     for(int i=0;i<operadores_relacionales.size();i++)
         if(lexema==operadores_relacionales[i])
-                return "operador relacional";
+                return Token("operador relacional",lexema);
     if(lexema[0]=='\"' && lexema[getLength(lexema)-1]=='\"')
-        return "varchar";
+        return Token("varchar",lexema);
     if(lexema[0]=='\'' && lexema[getLength(lexema)-1]=='\'' &&((getLength(lexema)==3 && lexema[1]!='\\')||(getLength(lexema)==4 && lexema[1]=='\\')))
-        return "char";
+        return Token("char",lexema);
     if(esDecimal(lexema))
-        return "decimal";
+        return Token("decimal",lexema);
     if(esEntero(lexema))
-        return "entero";
+        return Token("entero",lexema);
     if(esId(lexema))
-        return "id";
+        return Token("id",lexema);
     
-    return "error";
+    return Token("error",lexema);
 }
 
 void Lexico::resetIterador()
@@ -196,7 +199,7 @@ bool Lexico::generarTokens(string query)
         {
             if(i==query.length()-1)
                 temp+=query[i];
-            tokens.push_back(Token(getTipo(temp),temp));
+            tokens.push_back(getTipo(temp));
             temp="";
         }
         else

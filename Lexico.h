@@ -18,7 +18,7 @@ private:
     vector<string> operadores_logicos;
     vector<Token> tokens;
     //funciones basicas
-    string getTipo(string lexema);
+    Token getTipo(string lexema);
     bool esEntero(string a);
     bool esDecimal(string a);
     bool esId(string a);
