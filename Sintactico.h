@@ -19,9 +19,11 @@ public:
     Token nextToken();
     bool quedanTokens();
 
-    //TODO
-    bool analizarSelect(Lexico *lexico);
-    bool S();
+    //Analizar
+    bool analizar(Lexico *lexico);
+    
+    //Select
+    bool analizarSelect();
     bool select();
     bool from();
     bool where();
@@ -36,4 +38,9 @@ public:
     bool opRel();
     bool opLogico();
     bool valor();
+
+    //Update
+    bool analizarUpdate();
+    bool listaDeAsignaciones();
+    bool asignacion();
 };

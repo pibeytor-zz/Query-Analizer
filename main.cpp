@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
         //Analisis sintactico
         Sintactico s;
-        if(s.analizarSelect(l))
+        if(s.analizar(l))
             cout<<"Sintaxis correcta"<<endl;
         else
             cout<<"Sintaxis incorrecta"<<endl;

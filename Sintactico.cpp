@@ -36,13 +36,18 @@ bool Sintactico::quedanTokens()
     return lexico->quedanTokens();
 }
 
-bool Sintactico::analizarSelect(Lexico *lexico)
+bool Sintactico::analizar(Lexico *lexico)
 {
     this->lexico=lexico;
-    return S();
+    Token t=getToken();
+    if(t.tipo=="palabra reservada" && t.lexema=="select")
+        return analizarSelect();
+    if(t.tipo=="palabra reservada" && t.lexema=="update")
+        return analizarUpdate();
+    return false;
 }
 
-bool Sintactico::S()
+bool Sintactico::analizarSelect()
 {
     int iterador=getIterador();
     Token t=getToken();
@@ -302,6 +307,67 @@ bool Sintactico::valor()
 {
     Token t=getToken();
     if(t.tipo!="entero" && t.tipo!="decimal" && t.tipo!="char" && t.tipo!="varchar" && t.tipo!="booleano")
+        return false;
+    return true;
+}
+
+bool Sintactico::analizarUpdate()
+{
+    Token t=getToken();
+    if(t.tipo!="palabra reservada" || t.lexema!="update")
+        return false;
+    t=nextToken();
+    if(t.tipo!="id")
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" || t.lexema!="set")
+        return false;
+    t=nextToken();
+    if(!listaDeAsignaciones())
+        return false;
+    t=nextToken();
+    int iterador=getIterador();
+    if(!where())
+        setIterador(iterador);
+    else
+        t=nextToken();
+    return !quedanTokens();
+}
+
+bool Sintactico::listaDeAsignaciones()
+{
+    int iterador=getIterador();
+
+    //asignacion listaDeCampos
+    Token t=getToken();
+    if(asignacion())
+    {
+        t=nextToken();
+        if(listaDeAsignaciones())
+        {
+            return true;
+        }
+    }
+
+    //asignacion
+    setIterador(iterador);
+    t=getToken();
+    if(!asignacion())
+        return false;
+    return true;
+}
+
+bool Sintactico::asignacion()
+{
+    Token t=getToken();
+
+    if(!campo())
+        return false;
+    t=nextToken();
+    if(t.tipo!="operador relacional" || t.lexema!="=")
+        return false;
+    t=nextToken();
+    if(!valor())
         return false;
     return true;
 }
