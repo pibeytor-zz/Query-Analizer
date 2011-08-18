@@ -22,5 +22,18 @@ public:
     //TODO
     bool analizarSelect(Lexico *lexico);
     bool S();
-    bool Campo();
+    bool select();
+    bool from();
+    bool where();
+    bool listaDeCampos();
+    bool campo();
+    bool tabla();
+    bool listaDeTablas();
+    bool listaDeValidaciones();
+    bool validacion();
+    bool expIzq();
+    bool expDer();
+    bool opRel();
+    bool opLogico();
+    bool valor();
 };
