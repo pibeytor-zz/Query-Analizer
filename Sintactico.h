@@ -43,4 +43,11 @@ public:
     bool analizarUpdate();
     bool listaDeAsignaciones();
     bool asignacion();
+
+    //Delete
+    bool analizarDelete();
+
+    //Insert
+    bool analizarInsert();
+    bool listaDeValores();
 };

@@ -44,6 +44,10 @@ bool Sintactico::analizar(Lexico *lexico)
         return analizarSelect();
     if(t.tipo=="palabra reservada" && t.lexema=="update")
         return analizarUpdate();
+    if(t.tipo=="palabra reservada" && t.lexema=="delete")
+        return analizarDelete();
+    if(t.tipo=="palabra reservada" && t.lexema=="insert")
+        return analizarInsert();
     return false;
 }
 
@@ -367,6 +371,94 @@ bool Sintactico::asignacion()
     if(t.tipo!="operador relacional" || t.lexema!="=")
         return false;
     t=nextToken();
+    if(!valor())
+        return false;
+    return true;
+}
+
+bool Sintactico::analizarDelete()
+{
+    Token t=getToken();
+
+    if(t.tipo!="palabra reservada" && t.lexema!="delete")
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" && t.lexema!="from")
+        return false;
+    t=nextToken();
+    if(!tabla())
+        return false;
+    t=nextToken();
+    int iterador=getIterador();
+    if(!where())
+        setIterador(iterador);
+    else
+        t=nextToken();
+    return !quedanTokens();
+}
+
+bool Sintactico::analizarInsert()
+{
+    Token t=getToken();
+
+    if(t.tipo!="palabra reservada" && t.lexema!="insert")
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" && t.lexema!="into")
+        return false;
+    t=nextToken();
+    if(!tabla())
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" && t.lexema!="on")
+        return false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!="(")
+        return false;
+    t=nextToken();
+    if(!listaDeCampos())
+        return false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!=")")
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" && t.lexema!="values")
+        return false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!="(")
+        return false;
+    t=nextToken();
+    if(!listaDeValores())
+        return false;
+    t=nextToken();
+    if(t.tipo!="puntuacion" && t.lexema!=")")
+        return false;
+    t=nextToken();
+    return !quedanTokens();
+}
+
+bool Sintactico::listaDeValores()
+{
+    int iterador=getIterador();
+
+    //valor , listaDeValores
+    Token t=getToken();
+    if(valor())
+    {
+        t=nextToken();
+        if(t.tipo=="puntuacion" && t.lexema==",")
+        {
+            t=nextToken();
+            if(listaDeValores())
+            {
+                return true;
+            }
+        }
+    }
+
+    //campo
+    setIterador(iterador);
+    t=getToken();
     if(!valor())
         return false;
     return true;
