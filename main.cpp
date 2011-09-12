@@ -11,13 +11,14 @@
 using namespace std;
 
 #include "sintactico.h"
+#include "campo.h"
 
 
 /*
  *
  */
 
-int main(int argc, char *argv[])
+int main()
 {
     for(;;)
     {
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
 
         //Analisis lexico
         Lexico *l=new Lexico(query);
-        l->printTokens();
+        //l->printTokens();
         if(!l->correcto())
         {
             cout<<"Lexico incorrecto, la sentencia no pudo ejecutar."<<endl;
