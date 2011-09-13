@@ -1,6 +1,6 @@
 #ifndef DELETE_H
 #define DELETE_H
-#include "validacion.h"
+#include "parse/validacion.h"
 #include <vector>
 #include <iostream>
 using namespace std;

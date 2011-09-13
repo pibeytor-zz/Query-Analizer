@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2011-09-06T14:06:24
+# Project created by QtCreator 2011-09-13T10:27:11
 #
 #-------------------------------------------------
 
@@ -15,59 +15,33 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += \
-    token.cpp \
-    sintactico.cpp \
-    main.cpp \
-    lexico.cpp \
-    campo.cpp \
-    select.cpp \
-    tabla.cpp \
-    validacion.cpp \
-    insert.cpp \
-    asignacion.cpp \
-    valor.cpp \
+SOURCES += main.cpp \
     update.cpp \
-    delete.cpp
-
-OTHER_FILES += \
-    README.md
+    select.cpp \
+    insert.cpp \
+    delete.cpp \
+    parse/valor.cpp \
+    parse/validacion.cpp \
+    parse/token.cpp \
+    parse/tabla.cpp \
+    parse/sintactico.cpp \
+    parse/lexico.cpp \
+    parse/campo.cpp \
+    parse/asignacion.cpp
 
 HEADERS += \
-    token.h \
-    sintactico.h \
-    lexico.h \
-    campo.h \
-    select.h \
-    tabla.h \
-    validacion.h \
-    insert.h \
-    asignacion.h \
-    valor.h \
     update.h \
-    delete.h
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    select.h \
+    insert.h \
+    delete.h \
+    parse/valor.h \
+    parse/validacion.h \
+    parse/token.h \
+    parse/tabla.h \
+    parse/sintactico.h \
+    parse/lexico.h \
+    parse/campo.h \
+    parse/asignacion.h
 
 
 

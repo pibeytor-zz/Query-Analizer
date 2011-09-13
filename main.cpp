@@ -10,8 +10,8 @@
 #include <string>
 using namespace std;
 
-#include "sintactico.h"
-#include "campo.h"
+#include "parse/sintactico.h"
+#include "parse/campo.h"
 
 
 /*

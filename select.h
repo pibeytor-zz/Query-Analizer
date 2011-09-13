@@ -1,8 +1,8 @@
 #ifndef SELECT_H
 #define SELECT_H
-#include "campo.h"
-#include "tabla.h"
-#include "validacion.h"
+#include "parse/campo.h"
+#include "parse/tabla.h"
+#include "parse/validacion.h"
 #include <vector>
 #include <iostream>
 using namespace std;

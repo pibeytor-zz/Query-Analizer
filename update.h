@@ -1,8 +1,8 @@
 #ifndef UPDATE_H
 #define UPDATE_H
 #include <vector>
-#include "asignacion.h"
-#include "validacion.h"
+#include "parse/asignacion.h"
+#include "parse/validacion.h"
 #include <iostream>
 class Update
 {

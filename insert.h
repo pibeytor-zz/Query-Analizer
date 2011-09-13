@@ -1,7 +1,7 @@
 #ifndef INSERT_H
 #define INSERT_H
-#include "valor.h"
-#include "campo.h"
+#include "parse/valor.h"
+#include "parse/campo.h"
 #include <vector>
 #include <iostream>
 using namespace std;
