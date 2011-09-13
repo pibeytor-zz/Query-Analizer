@@ -11,15 +11,13 @@
 using namespace std;
 
 #include "parse/sintactico.h"
-#include "parse/campo.h"
-
-
-/*
- *
- */
+#include "sm/StorageManager.h"
 
 int main()
 {
+    StorageManager sm;
+    sm.createTableSpace("MiBdd","1.0","clave",40);
+    /*
     for(;;)
     {
         //Captura de sentencia SQL
@@ -45,5 +43,6 @@ int main()
         else
             cout<<"Sintaxis incorrecta"<<endl;
     }
+    */
     return 0;
 }
