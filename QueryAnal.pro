@@ -44,7 +44,9 @@ SOURCES += main.cpp \
     sm/InfoD.cpp \
     sm/InfoCMD.cpp \
     sm/Data.cpp \
-    sm/Block.cpp
+    sm/Block.cpp \
+    sm/Iterador.cpp \
+    sm/IteradorOrdenado.cpp
 
 HEADERS += \
     update.h \
@@ -75,19 +77,8 @@ HEADERS += \
     sm/InfoD.h \
     sm/InfoCMD.h \
     sm/Data.h \
-    sm/Block.h
+    sm/Block.h \
+    sm/Iterador.h \
+    sm/IteradorOrdenado.h
 
 OTHER_FILES +=
-
-
-
-
-
-
-
-
-
-
-
-
-
