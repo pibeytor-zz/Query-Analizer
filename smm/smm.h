@@ -1,59 +1,53 @@
-#include <vector>
-#include <string>
-using namespace std;
-
 class Field
 {
 public:
 	string tipo;//"varchar" "booleano" "entero" "caracter"
 	string varchar;
-        bool booleano;
+    bool booleano;
 	int entero;
 	char caracter;
 
-        Field()
-        {
-        }
-
-        Field(string varchar)
+    Field(string varchar)
 	{
 		this->varchar=varchar;
 		tipo="varchar";
 	}
-        Field(bool booleano)
+    Field(bool booleano)
 	{
 		this->booleano=booleano;
 		tipo="booleano";
 	}
-        Field(int entero)
+    Field(int entero)
 	{
 		this->entero=entero;
 		tipo="entero";
 	}
-        Field(char caracter)
+    Field(char caracter)
 	{
-		this->caracter=caracter;
-                tipo="char";
+                this->caracter=caracter;
+		tipo="caracter";
 	}
+    Field(){}
 };
 
 class Reccord
 {
-	vector<Field>fields;
+    public:
 
-        Reccord(vector<Field>fields)
-        {
+        vector<Field>fields;
+
+        Reccord(vector<Field>fields){
             this->fields=fields;
         }
 
         Field getField(int id)
         {
-            return fields[id];
+            return this->fields[id];
         }
 
         void setField(int id,Field field)
         {
-            fields[id]=field;
+            this->fields[id]=field;
         }
 };
 
@@ -89,41 +83,27 @@ class Table
 
         void insertReccord(Reccord reccord)
         {
-            reccords.push_back(reccord);
+            this->reccords.push_back(reccord);
         }
-
         void deleteReccord(int id)
         {
-            reccords.erase(reccords.begin()+id);
+            this->reccords.erase(reccords.begin()+id);
         }
-
         void updateReccord(int id,Reccord reccord)
         {
-            reccords[id]=reccord;
+            this->reccords[id]=reccord;
         }
-
         Reccord selectReccord(int id)
         {
-            return reccords[id];
+            return this->reccords[id];
         }
 };
 
 class StorageManagerM
 {
-        vector<Table>tables;
+	vector<Table>table;
 
-        StorageManagerM()
-        {
-
-        }
-
-        void insertTable(Table table)
-        {
-            tables.push_back(table);
-        }
-
-        Table getTabla(int id)
-        {
-            return tables[id];
-        }
+        StorageManagerM();
+        void insertTable(Table tabla);
+        Tabla getTabla(int id);
 };

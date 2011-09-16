@@ -45,8 +45,12 @@ SOURCES += main.cpp \
     sm/InfoCMD.cpp \
     sm/Data.cpp \
     sm/Block.cpp \
+<<<<<<< HEAD
     parse/semantico.cpp \
     arbol.cpp
+=======
+    smm/iterator.cpp
+>>>>>>> 4691485fa58b77d0db1eed410ea7445c2d0a2c4e
 
 HEADERS += \
     update.h \
@@ -79,6 +83,7 @@ HEADERS += \
     sm/Data.h \
     sm/Block.h \
     smm/smm.h \
+<<<<<<< HEAD
     parse/semantico.h \
     arbol.h
 
@@ -103,3 +108,6 @@ HEADERS += \
 
 
 
+=======
+    smm/iterator.h
+>>>>>>> 4691485fa58b77d0db1eed410ea7445c2d0a2c4e
