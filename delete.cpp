@@ -25,4 +25,6 @@ void Delete::printDebug()
 void Delete::ejecutar()
 {
     printDebug();
+    cout<<"'v'";
+    cout<<compare(Field((char)'v'),validaciones[0].exp_der,validaciones[0].tipo);
 }
