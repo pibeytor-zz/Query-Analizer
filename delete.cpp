@@ -25,6 +25,6 @@ void Delete::printDebug()
 void Delete::ejecutar()
 {
     printDebug();
-    cout<<"'v'";
-    cout<<eval(Field(50),validaciones[0].exp_der,validaciones[0].tipo);
+
+    cout<<eval(Field((char)'f'),validaciones[0].exp_der,validaciones[0].tipo);
 }

@@ -29,7 +29,7 @@ public:
     Field(char caracter)
 	{
                 this->caracter=caracter;
-		tipo="caracter";
+                tipo="char";
 	}
     Field(){}
 };
