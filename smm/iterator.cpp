@@ -4,7 +4,7 @@ iterator::iterator()
 {
 
 }
-void iterator::open(Tabla tab)
+void iterator::open(Table tab)
 {
     this->tabla=tab;
     this->actual=0;
