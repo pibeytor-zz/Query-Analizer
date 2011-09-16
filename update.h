@@ -3,8 +3,9 @@
 #include <vector>
 #include "parse/asignacion.h"
 #include "parse/validacion.h"
+#include "arbol.h"
 #include <iostream>
-class Update
+class Update : Arbol
 {
 public:
     string tabla;
@@ -13,6 +14,7 @@ public:
     Update();
     Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones);
     void printDebug();
+    void ejecutar();
 };
 
 #endif // UPDATE_H

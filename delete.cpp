@@ -21,3 +21,8 @@ void Delete::printDebug()
         cout<<validaciones[i].exp_izq<<","<<validaciones[i].operador<<","<<validaciones[i].exp_der<<","<<validaciones[i].tipo<<endl;
     cout<<"-------------"<<endl;
 }
+
+void Delete::ejecutar()
+{
+    printDebug();
+}

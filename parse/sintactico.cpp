@@ -62,7 +62,7 @@ bool Sintactico::analizar(Lexico *lexico)
         bool correcta=analizarSelect();
         if(correcta)
         {
-            arbol_select->printDebug();
+            tipo_sentencia="select";
             return true;
         }
         return false;
@@ -73,7 +73,7 @@ bool Sintactico::analizar(Lexico *lexico)
         bool correcta=analizarUpdate();
         if(correcta)
         {
-            arbol_update->printDebug();
+            tipo_sentencia="update";
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ bool Sintactico::analizar(Lexico *lexico)
         bool correcta=analizarDelete();
         if(correcta)
         {
-            arbol_delete->printDebug();
+            tipo_sentencia="delete";
             return true;
         }
         return false;
@@ -95,7 +95,7 @@ bool Sintactico::analizar(Lexico *lexico)
         bool correcta=analizarInsert();
         if(correcta)
         {
-            arbol_insert->printDebug();
+            tipo_sentencia="insert";
             return true;
         }
         return false;

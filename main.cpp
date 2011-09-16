@@ -10,9 +10,10 @@
 #include <string>
 using namespace std;
 
-#include "parse/sintactico.h"
+#include "parse/semantico.h"
 #include "sm/StorageManager.h"
-#include "smm/smm.h"
+
+
 
 int main()
 {
@@ -35,11 +36,14 @@ int main()
         }
 
         //Analisis sintactico
-        Sintactico s;
-        if(s.analizar(l))
-            cout<<"Sintaxis correcta"<<endl;
-        else
+        Sintactico sintactico;
+        if(!sintactico.analizar(l))
+        {
             cout<<"Sintaxis incorrecta"<<endl;
+            continue;
+        }
+        Semantico semantico(sintactico);
+        semantico.ejecutarSentencia();
     }
 
     return 0;
