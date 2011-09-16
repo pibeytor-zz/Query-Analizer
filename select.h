@@ -14,7 +14,8 @@ public:
     vector<Tabla>tablas;
     vector<Validacion>validaciones;
     vector<string>operadores_logicos;
-    Select(vector<Campo>campos,vector<Tabla>tablas,vector<Validacion>validaciones,vector<string>operadores_logicos);
+    vector<Campo>groupBy;
+    Select(vector<Campo>campos,vector<Tabla>tablas,vector<Validacion>validaciones,vector<string>operadores_logicos,vector<Campo>groupBy);
     void printDebug();
     void ejecutar();
 };

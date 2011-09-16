@@ -65,6 +65,7 @@ public:
     bool opRel();
     bool opLogico();
     bool valor();
+    bool groupBy();
 
     //Update
     bool analizarUpdate();

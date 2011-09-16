@@ -21,6 +21,8 @@ Lexico::Lexico(string query)
     palabras_reservadas.push_back("set");
     palabras_reservadas.push_back("null");
     palabras_reservadas.push_back("as");
+    palabras_reservadas.push_back("group");
+    palabras_reservadas.push_back("by");
 
     puntuacion.push_back("(");
     puntuacion.push_back(")");

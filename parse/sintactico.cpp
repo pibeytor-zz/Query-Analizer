@@ -110,6 +110,8 @@ bool Sintactico::analizarSelect()
 
     if(!select())
         return false;
+    vector<Campo>lista_campos_temp=arbol_campos;
+    arbol_campos.clear();
     t=nextToken();
     if(!from())
         return false;
@@ -120,7 +122,13 @@ bool Sintactico::analizarSelect()
         setIterador(iterador);
     else
         t=nextToken();
-    arbol_select=new Select(arbol_campos,arbol_tablas,arbol_validaciones,arbol_operadores);//semantico
+
+    iterador=getIterador();
+    if(!groupBy())
+        setIterador(iterador);
+    else
+        t=nextToken();
+    arbol_select=new Select(lista_campos_temp,arbol_tablas,arbol_validaciones,arbol_operadores,arbol_campos);//semantico
     return !quedanTokens();
 }
 
@@ -414,6 +422,21 @@ bool Sintactico::valor()
     Token t=getToken();
     arbol_valor=Valor(t.lexema,t.tipo);
     if(t.tipo!="entero" && t.tipo!="decimal" && t.tipo!="char" && t.tipo!="varchar" && t.tipo!="booleano")
+        return false;
+    return true;
+}
+
+bool Sintactico::groupBy()
+{
+    //group by <lista de campos>
+    Token t=getToken();
+    if(t.tipo!="palabra reservada" || t.lexema!="group")
+        return false;
+    t=nextToken();
+    if(t.tipo!="palabra reservada" || t.lexema!="by")
+        return false;
+    t=nextToken();
+    if(!listaDeCampos())
         return false;
     return true;
 }

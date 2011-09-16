@@ -1,11 +1,12 @@
 #include "select.h"
 
-Select::Select(vector<Campo>campos,vector<Tabla>tablas,vector<Validacion>validaciones,vector<string>operadores_logicos)
+Select::Select(vector<Campo>campos,vector<Tabla>tablas,vector<Validacion>validaciones,vector<string>operadores_logicos,vector<Campo>groupBy)
 {
     this->campos=campos;
     this->tablas=tablas;
     this->validaciones=validaciones;
     this->operadores_logicos=operadores_logicos;
+    this->groupBy=groupBy;
 }
 
 void Select::printDebug()
@@ -24,6 +25,9 @@ void Select::printDebug()
     cout<<"Operadores logicos:"<<endl;
     for(int i=0;i<(int)operadores_logicos.size();i++)
         cout<<operadores_logicos[i]<<endl;
+    cout<<"Group by:"<<endl;
+    for(int i=0;i<(int)groupBy.size();i++)
+        cout<<groupBy[i].campo<<","<<groupBy[i].tabla<<endl;
     cout<<"-------------"<<endl;
 }
 
