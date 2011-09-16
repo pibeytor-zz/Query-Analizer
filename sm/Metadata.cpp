@@ -2,7 +2,7 @@
 #include "Metadata.h"
 #define path "tablespace.dat"
 
-Metadata::Metadata(unsigned int blockID) : Block(0, 0, 0, "MD") {
+Metadata::Metadata(unsigned int blockID) : Block(0, 0, 0, "MDB") {
     fstream disco;
     disco.open(path, ios::binary | ios::in | ios::out);
     if (!disco) {
@@ -29,7 +29,7 @@ Metadata::Metadata(unsigned int blockID,const char* nombreTabla, unsigned int ca
 
 void Metadata::escribir() {
     fstream disco;
-    disco.open(path, ios::binary | ios::out);
+    disco.open(path, ios::binary | ios::in |ios::out);
     if (!disco) {
         throw SMException("No se pudo abrir el archivo tablespace.dat");
     }
@@ -279,10 +279,10 @@ unsigned int Metadata::getrecordsize(){
 
 }
 
-unsigned int Metadata::getFreeSpace(int espacio) {
+unsigned int Metadata::getFreeSpace() {
 
 
-
+    int espacio = getrecordsize();
 
     int blockid = 0;
 

@@ -31,7 +31,7 @@ SOURCES += main.cpp \
     sm/Varchar.cpp \
     sm/Template.cpp \
     sm/SystemBlock.cpp \
-    sm/StorageManage.cpp \
+    sm/StorageManager.cpp \
     sm/SMException.cpp \
     sm/Registro.cpp \
     sm/MetadataContinuo.cpp \
@@ -75,9 +75,13 @@ HEADERS += \
     sm/InfoD.h \
     sm/InfoCMD.h \
     sm/Data.h \
-    sm/Block.h
+    sm/Block.h \
+    smm/smm.h
 
-OTHER_FILES +=
+
+
+
+
 
 
 

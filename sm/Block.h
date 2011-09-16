@@ -5,8 +5,8 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include "Template.h"
 #include "SMException.h"
+#include <QString>
 
 using namespace std;
 
@@ -19,7 +19,7 @@ public:
     char type[4];
 };
 
-class Block : Template {
+class Block {
 public:
     Header header;
     Block(unsigned int blockID, unsigned int ant, unsigned int sig, const char* type);
@@ -32,8 +32,8 @@ public:
     unsigned int getSig();
     unsigned int getBlockID();
     char* getType();
-    virtual void escribir();
-    virtual unsigned int getEspacioDisponible();
+    void escribir();
+     unsigned int getEspacioDisponible();
 private:
 
 };

@@ -61,10 +61,10 @@ void StorageManager::createTableSpace(const char* nombreBD, const char* version,
 void StorageManager::createTable(const char* nombreTabla, unsigned int cant_campos, InfoMDC* campos) {
     SystemBlock SB;
     unsigned  int blockID  = SB.getFree();
-
+    SB.acomodarPrimerLibre();
     Metadata metadata(blockID, nombreTabla,cant_campos);
     metadata.escribir();
-    SB.acomodarPrimerLibre();
+
     if(SB.getPrimerMD()==0){
         SB.setPrimerMD(blockID);
     }
@@ -96,9 +96,10 @@ void StorageManager::createTable(const char* nombreTabla, unsigned int cant_camp
             unsigned int BlockID_Ant = blockID;
             while (temp_cant_campos_restantes > 0) {
                 unsigned int free = SB.getFree();
+                SB.acomodarPrimerLibre();
                 MetadataContinuo MDC(free,blockID);
                 MDC.escribir();
-                SB.acomodarPrimerLibre();
+
 
                 if (BlockID_Ant != blockID) {
                     MetadataContinuo MDC_ant(BlockID_Ant);
