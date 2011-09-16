@@ -21,3 +21,10 @@ void Delete::printDebug()
         cout<<validaciones[i].exp_izq<<","<<validaciones[i].operador<<","<<validaciones[i].exp_der<<","<<validaciones[i].tipo<<endl;
     cout<<"-------------"<<endl;
 }
+
+void Delete::ejecutar()
+{
+    printDebug();
+
+    cout<<eval(Field((char)'f'),validaciones[0].exp_der,validaciones[0].tipo);
+}

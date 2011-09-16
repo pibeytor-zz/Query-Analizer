@@ -26,3 +26,8 @@ void Select::printDebug()
         cout<<operadores_logicos[i]<<endl;
     cout<<"-------------"<<endl;
 }
+
+void Select::ejecutar()
+{
+    printDebug();
+}

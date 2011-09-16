@@ -25,3 +25,8 @@ void Insert::printDebug()
         cout<<valores[i].valor<<","<<valores[i].tipo<<endl;
     cout<<"-------------"<<endl;
 }
+
+void Insert::ejecutar()
+{
+    printDebug();
+}

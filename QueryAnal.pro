@@ -20,11 +20,13 @@ SOURCES += main.cpp \
     select.cpp \
     insert.cpp \
     delete.cpp \
+    arbol.cpp \
     parse/valor.cpp \
     parse/validacion.cpp \
     parse/token.cpp \
     parse/tabla.cpp \
     parse/sintactico.cpp \
+    parse/semantico.cpp \
     parse/lexico.cpp \
     parse/campo.cpp \
     parse/asignacion.cpp \
@@ -45,19 +47,21 @@ SOURCES += main.cpp \
     sm/InfoCMD.cpp \
     sm/Data.cpp \
     sm/Block.cpp \
-    smm/iterator.cpp \
-    smm/smm.cpp
+    smm/smm.cpp \
+    smm/iterator.cpp
 
 HEADERS += \
     update.h \
     select.h \
     insert.h \
     delete.h \
+    arbol.h \
     parse/valor.h \
     parse/validacion.h \
     parse/token.h \
     parse/tabla.h \
     parse/sintactico.h \
+    parse/semantico.h \
     parse/lexico.h \
     parse/campo.h \
     parse/asignacion.h \

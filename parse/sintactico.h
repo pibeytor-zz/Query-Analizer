@@ -27,6 +27,7 @@ public:
     bool quedanTokens();
 
     //Analizar
+    string tipo_sentencia;
     Select* arbol_select;
     Insert* arbol_insert;
     Update* arbol_update;

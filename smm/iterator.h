@@ -1,13 +1,13 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 #include "smm.h"
-class iterator
+class Iterator
 {
 public:
     int actual;
     Table tabla;
-    iterator();
-    void open(Tabla tab);
+    Iterator();
+    void open(Table tab);
     Reccord getNext();
 
 
