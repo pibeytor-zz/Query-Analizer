@@ -1,15 +1,15 @@
 #include "iterator.h"
 
-iterator::iterator()
+Iterator::Iterator()
 {
 
 }
-void iterator::open(Table tab)
+void Iterator::open(Table tab)
 {
     this->tabla=tab;
     this->actual=0;
 }
-Reccord iterator::getNext()
+Reccord Iterator::getNext()
 {
     Reccord r=this->tabla.reccords[this->actual];
     this->actual++;

@@ -20,14 +20,7 @@ SOURCES += main.cpp \
     select.cpp \
     insert.cpp \
     delete.cpp \
-    parse/valor.cpp \
-    parse/validacion.cpp \
-    parse/token.cpp \
-    parse/tabla.cpp \
-    parse/sintactico.cpp \
-    parse/lexico.cpp \
-    parse/campo.cpp \
-    parse/asignacion.cpp \
+    arbol.cpp \
     sm/Varchar.cpp \
     sm/Template.cpp \
     sm/SystemBlock.cpp \
@@ -45,26 +38,23 @@ SOURCES += main.cpp \
     sm/InfoCMD.cpp \
     sm/Data.cpp \
     sm/Block.cpp \
-<<<<<<< HEAD
+    smm/iterator.cpp \
+    parse/valor.cpp \
+    parse/validacion.cpp \
+    parse/token.cpp \
+    parse/tabla.cpp \
+    parse/sintactico.cpp \
     parse/semantico.cpp \
-    arbol.cpp
-=======
-    smm/iterator.cpp
->>>>>>> 4691485fa58b77d0db1eed410ea7445c2d0a2c4e
+    parse/lexico.cpp \
+    parse/campo.cpp \
+    parse/asignacion.cpp
 
 HEADERS += \
     update.h \
     select.h \
     insert.h \
     delete.h \
-    parse/valor.h \
-    parse/validacion.h \
-    parse/token.h \
-    parse/tabla.h \
-    parse/sintactico.h \
-    parse/lexico.h \
-    parse/campo.h \
-    parse/asignacion.h \
+    arbol.h \
     sm/Varchar.h \
     sm/Template.h \
     sm/SystemBlock.h \
@@ -83,9 +73,16 @@ HEADERS += \
     sm/Data.h \
     sm/Block.h \
     smm/smm.h \
-<<<<<<< HEAD
+    smm/iterator.h \
+    parse/valor.h \
+    parse/validacion.h \
+    parse/token.h \
+    parse/tabla.h \
+    parse/sintactico.h \
     parse/semantico.h \
-    arbol.h
+    parse/lexico.h \
+    parse/campo.h \
+    parse/asignacion.h
 
 
 
@@ -94,20 +91,3 @@ HEADERS += \
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-    smm/iterator.h
->>>>>>> 4691485fa58b77d0db1eed410ea7445c2d0a2c4e

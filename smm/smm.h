@@ -1,3 +1,7 @@
+#include <vector>
+#include <string>
+using namespace std;
+
 class Field
 {
 public:
@@ -53,6 +57,7 @@ class Reccord
 
 class InfoField
 {
+public:
 	string tipo;
 	string nombre;
 	bool pk;
@@ -71,9 +76,15 @@ class InfoField
 
 class Table
 {
+public:
 	string nombre;
 	vector<InfoField>info_fields;
 	vector<Reccord>reccords;
+
+        Table()
+        {
+
+        }
 
         Table(string nombre,vector<InfoField>info_fields)
         {
@@ -101,9 +112,10 @@ class Table
 
 class StorageManagerM
 {
+public:
 	vector<Table>table;
 
         StorageManagerM();
         void insertTable(Table tabla);
-        Tabla getTabla(int id);
+        Table getTabla(int id);
 };
