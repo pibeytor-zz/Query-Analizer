@@ -44,7 +44,8 @@ SOURCES += main.cpp \
     sm/InfoD.cpp \
     sm/InfoCMD.cpp \
     sm/Data.cpp \
-    sm/Block.cpp
+    sm/Block.cpp \
+    smm/iterator.cpp
 
 HEADERS += \
     update.h \
@@ -76,22 +77,5 @@ HEADERS += \
     sm/InfoCMD.h \
     sm/Data.h \
     sm/Block.h \
-    smm/smm.h
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    smm/smm.h \
+    smm/iterator.h
