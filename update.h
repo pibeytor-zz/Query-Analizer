@@ -14,7 +14,7 @@ public:
     Update();
     Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones);
     void printDebug();
-    void ejecutar();
+    void ejecutar(StorageManagerM* smm);
 };
 
 #endif // UPDATE_H

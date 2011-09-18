@@ -5,10 +5,10 @@ class Iterator
 {
 public:
     int actual;
-    Table tabla;
+    Table *tabla;
     Iterator();
-    void open(Table tab);
-    Reccord getNext();
+    void open(Table *tab);
+    Reccord* getNext();
 
 
 };

@@ -30,8 +30,77 @@ void Select::printDebug()
         cout<<groupBy[i].campo<<","<<groupBy[i].tabla<<endl;
     cout<<"-------------"<<endl;
 }
-
-void Select::ejecutar()
+bool contains(vector<int>enteros,int entero)
 {
-    printDebug();
+    for(int i=0;i<enteros.size();i++)
+        if(enteros[i]==entero)
+            return true;
+    return false;
+}
+
+void Select::ejecutar(StorageManagerM* smm)
+{
+    //printDebug();
+
+    //Buscacion de la tabla
+    Table *table=smm->getTabla(this->tablas[0].tabla);
+    if(table->nombre=="")
+    {
+        cout<<"La tabla no existe"<<endl;
+        return;
+    }
+
+    //Buscacion de campos
+    vector<int>campos_a_proyectar;
+    if(campos[0].campo=="*")
+    {
+        for(int i=0;i<table->info_fields.size();i++)
+            campos_a_proyectar.push_back(i);
+    }else
+    {
+        for(int i=0;i<campos.size();i++)
+        {
+            int pos=table->getPosicionCampo(campos[i].campo);
+            if(pos==-1)
+            {
+                cout<<"No existe el campo"<<endl;
+                return;
+            }
+            campos_a_proyectar.push_back(pos);
+        }
+    }
+
+    //Recorrido de campos con el iterador
+    Iterator it;
+    it.open(table);
+
+    for(int i=0;i<table->info_fields.size();i++)
+        if(contains(campos_a_proyectar,i))
+            cout<<table->info_fields[i].nombre<<"\t";
+
+    cout<<endl;
+
+    while(it.actual<it.tabla->reccords.size())
+    {
+        Reccord* r=it.getNext();
+
+        for(int i=0;i<it.tabla->info_fields.size();i++)
+        {
+            if(contains(campos_a_proyectar,i))
+            {
+                if(r->fields[i]->tipo=="entero")
+                    cout<<r->fields[i]->entero;
+                if(r->fields[i]->tipo=="varchar")
+                    cout<<r->fields[i]->varchar;
+                if(r->fields[i]->tipo=="char")
+                    cout<<r->fields[i]->caracter;
+                if(r->fields[i]->tipo=="booleano")
+                    cout<<r->fields[i]->booleano;
+                if(r->fields[i]->tipo=="NULL")
+                    cout<<"NULL";
+                cout<<"\t";
+            }
+        }
+        cout<<endl;
+    }
 }

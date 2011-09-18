@@ -9,14 +9,14 @@ Semantico::Semantico(Sintactico sintactico)
     tipo_sentencia=sintactico.tipo_sentencia;
 }
 
-void Semantico::ejecutarSentencia()
+void Semantico::ejecutarSentencia(StorageManagerM* smm)
 {
     if(tipo_sentencia=="select")
-        arbol_select->ejecutar();
+        arbol_select->ejecutar(smm);
     if(tipo_sentencia=="insert")
-        arbol_insert->ejecutar();
-    if(tipo_sentencia=="upate")
-        arbol_update->ejecutar();
+        arbol_insert->ejecutar(smm);
+    if(tipo_sentencia=="update")
+        arbol_update->ejecutar(smm);
     if(tipo_sentencia=="delete")
-        arbol_delete->ejecutar();
+        arbol_delete->ejecutar(smm);
 }

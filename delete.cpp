@@ -22,9 +22,17 @@ void Delete::printDebug()
     cout<<"-------------"<<endl;
 }
 
-void Delete::ejecutar()
+void Delete::ejecutar(StorageManagerM* smm)
 {
-    printDebug();
+    //printDebug();
 
-    cout<<eval(Field((char)'f'),validaciones[0].exp_der,validaciones[0].tipo);
+    //Buscacion de la tabla
+    Table *table=smm->getTabla(tabla);
+    if(table->nombre=="")
+    {
+        cout<<"La tabla no existe"<<endl;
+        return;
+    }
+
+    table->deleteReccord(0);
 }

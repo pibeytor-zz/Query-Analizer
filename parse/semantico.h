@@ -11,7 +11,7 @@ class Semantico
     Delete* arbol_delete;
 public:
     Semantico(Sintactico sintactico);
-    void ejecutarSentencia();
+    void ejecutarSentencia(StorageManagerM* smm);
 };
 
 #endif // SEMANTICO_H

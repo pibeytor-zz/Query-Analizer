@@ -13,7 +13,7 @@ public:
     Delete();
     Delete(string tabla,vector<Validacion>validaciones);
     void printDebug();
-    void ejecutar();
+    void ejecutar(StorageManagerM* smm);
 };
 
 #endif // DELETE_H

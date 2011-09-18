@@ -16,7 +16,7 @@ public:
     Insert();
     Insert(string tabla,vector<Campo>campos,vector<Valor>valores);
     void printDebug();
-    void ejecutar();
+    void ejecutar(StorageManagerM* smm);
 };
 
 #endif // INSERT_H

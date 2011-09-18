@@ -17,7 +17,7 @@ public:
     vector<Campo>groupBy;
     Select(vector<Campo>campos,vector<Tabla>tablas,vector<Validacion>validaciones,vector<string>operadores_logicos,vector<Campo>groupBy);
     void printDebug();
-    void ejecutar();
+    void ejecutar(StorageManagerM* smm);
 };
 
 #endif // SELECT_H
