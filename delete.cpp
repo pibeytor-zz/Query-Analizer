@@ -4,10 +4,11 @@ Delete::Delete()
 {
 }
 
-Delete::Delete(string tabla,vector<Validacion>validaciones)
+Delete::Delete(string tabla,vector<Validacion>validaciones,vector<string>operadores_logicos)
 {
     this->tabla=tabla;
     this->validaciones=validaciones;
+    this->operadores_logicos=operadores_logicos;
 }
 
 void Delete::printDebug()
@@ -33,6 +34,18 @@ void Delete::ejecutar(StorageManagerM* smm)
         cout<<"La tabla no existe"<<endl;
         return;
     }
-
-    table->deleteReccord(0);
+    //Buscacion de registros a borrar
+    vector<int>registros_a_borrar;
+    for(int i=0;(int)i<table->reccords.size();i++)
+    {
+        if(where(validaciones,operadores_logicos,table,table->selectReccord(i)))
+            registros_a_borrar.push_back(i);
+    }
+    //Borracion de registros de abajo hacia arriba para no interferir en los indices
+    for(int i=(int)table->reccords.size()-1;i>=0;i--)
+    {
+        if(contains(registros_a_borrar,i))
+            table->deleteReccord(i);
+    }
+    cout<<"Registros borrados exitosamente";
 }

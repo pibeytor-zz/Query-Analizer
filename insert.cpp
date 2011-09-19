@@ -67,10 +67,10 @@ void Insert::ejecutar(StorageManagerM* smm)
         }
     }
 
-    //Creacion de campos rellenados con NULL
+    //Creacion de campos rellenados con el valor default
     vector<Field*> fields;
     for(int i=0;i<table->info_fields.size();i++)
-        fields.push_back(new Field());
+        fields.push_back(table->info_fields[i].valor_default);
     //Seteacion de valores de los campos
     j=0;
     for(int i=0;i<campos_a_proyectar.size();i++)

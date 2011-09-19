@@ -4,11 +4,12 @@ Update::Update()
 {
 }
 
-Update::Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones)
+Update::Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones,vector<string>operadores_logicos)
 {
     this->tabla=tabla;
     this->asignaciones=asignaciones;
     this->validaciones=validaciones;
+    this->operadores_logicos=operadores_logicos;
 }
 
 void Update::printDebug()
@@ -61,23 +62,29 @@ void Update::ejecutar(StorageManagerM* smm)
         j++;
     }
 
-    //Creacion de campos rellenados con NULL
-    Reccord* reg=table->selectReccord(0);
-    //Seteacion de valores de los campos
-    j=0;
-    for(int i=0;i<campos_a_proyectar.size();i++)
+    for(int i=0;i<(int)table->reccords.size();i++)
     {
-        if(asignaciones[j].valor.tipo=="entero")
-            reg->fields[campos_a_proyectar[i]]=new Field(getInt(asignaciones[j].valor.valor));
-        if(asignaciones[j].valor.tipo=="varchar")
-            reg->fields[campos_a_proyectar[i]]=new Field((string)getString(asignaciones[j].valor.valor));
-        if(asignaciones[j].valor.tipo=="char")
-            reg->fields[campos_a_proyectar[i]]=new Field((char)getChar(asignaciones[j].valor.valor));
-        if(asignaciones[j].valor.tipo=="booleano")
-            reg->fields[campos_a_proyectar[i]]=new Field(getBool(asignaciones[j].valor.valor));
-        j++;
+        Reccord* reg=table->selectReccord(i);
+        //Verificacion de validaciones
+        if(!where(validaciones,operadores_logicos,table,reg))
+            continue;
+        //Creacion de campos rellenados con NULL
+        //Seteacion de valores de los campos
+        j=0;
+        for(int i=0;i<campos_a_proyectar.size();i++)
+        {
+            if(asignaciones[j].valor.tipo=="entero")
+                reg->fields[campos_a_proyectar[i]]=new Field(getInt(asignaciones[j].valor.valor));
+            if(asignaciones[j].valor.tipo=="varchar")
+                reg->fields[campos_a_proyectar[i]]=new Field((string)getString(asignaciones[j].valor.valor));
+            if(asignaciones[j].valor.tipo=="char")
+                reg->fields[campos_a_proyectar[i]]=new Field((char)getChar(asignaciones[j].valor.valor));
+            if(asignaciones[j].valor.tipo=="booleano")
+                reg->fields[campos_a_proyectar[i]]=new Field(getBool(asignaciones[j].valor.valor));
+            j++;
+        }
+        //Updatacion de registros
+        table->updateReccord(i,reg);
     }
-    //Updatacion de registro
-    table->updateReccord(0,reg);
-    cout<<"Registro insertdo con exito."<<endl;
+    cout<<"Registros actualizados exitosamente."<<endl;
 }

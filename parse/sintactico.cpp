@@ -22,6 +22,7 @@ void Sintactico::limpiarVariables()
     //Asignacion arbol_asignacion;
     arbol_valores.clear();
     //Valor arbol_valor;
+    arbol_operadores.clear();
 }
 
 void Sintactico::resetIterador()
@@ -465,7 +466,7 @@ bool Sintactico::analizarUpdate()
         setIterador(iterador);
     else
         t=nextToken();
-    arbol_update=new Update(tabla_temp,arbol_asignaciones,arbol_validaciones);
+    arbol_update=new Update(tabla_temp,arbol_asignaciones,arbol_validaciones,arbol_operadores);
     return !quedanTokens();
 }
 
@@ -534,7 +535,7 @@ bool Sintactico::analizarDelete()
         setIterador(iterador);
     else
         t=nextToken();
-    arbol_delete=new Delete(tabla_temp,arbol_validaciones);
+    arbol_delete=new Delete(tabla_temp,arbol_validaciones,arbol_operadores);
     return !quedanTokens();
 }
 

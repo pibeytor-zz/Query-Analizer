@@ -30,13 +30,6 @@ void Select::printDebug()
         cout<<groupBy[i].campo<<","<<groupBy[i].tabla<<endl;
     cout<<"-------------"<<endl;
 }
-bool contains(vector<int>enteros,int entero)
-{
-    for(int i=0;i<enteros.size();i++)
-        if(enteros[i]==entero)
-            return true;
-    return false;
-}
 
 void Select::ejecutar(StorageManagerM* smm)
 {
@@ -83,7 +76,8 @@ void Select::ejecutar(StorageManagerM* smm)
     while(it.actual<it.tabla->reccords.size())
     {
         Reccord* r=it.getNext();
-
+        if(!where(validaciones,operadores_logicos,table,r))
+            continue;
         for(int i=0;i<it.tabla->info_fields.size();i++)
         {
             if(contains(campos_a_proyectar,i))

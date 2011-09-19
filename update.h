@@ -11,8 +11,9 @@ public:
     string tabla;
     vector<Asignacion>asignaciones;
     vector<Validacion>validaciones;
+    vector<string>operadores_logicos;
     Update();
-    Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones);
+    Update(string tabla,vector<Asignacion>asignaciones,vector<Validacion>validaciones,vector<string>operadores_logicos);
     void printDebug();
     void ejecutar(StorageManagerM* smm);
 };

@@ -65,9 +65,9 @@ public:
 	string nombre;
 	bool pk;
 	bool acepta_null;
-        Field valor_default;
+        Field* valor_default;
 
-        InfoField(string tipo,string nombre,bool pk,bool acepta_null,Field valor_default)
+        InfoField(string tipo,string nombre,bool pk,bool acepta_null,Field* valor_default)
         {
             this->tipo=tipo;
             this->nombre=nombre;
@@ -153,10 +153,10 @@ public:
         {
             //Definicion de infocampos
             vector<InfoField>info;
-            info.push_back(InfoField("entero","codigo",false,false,Field(0)));
-            info.push_back(InfoField("varchar","nombre",false,false,Field((string)"varchar")));
-            info.push_back(InfoField("char","sexo",false,false,Field((char)'a')));
-            info.push_back(InfoField("booleano","tiempo_completo",false,false,Field(false)));
+            info.push_back(InfoField("entero","codigo",false,false,new Field(0)));
+            info.push_back(InfoField("varchar","nombre",false,false,new Field((string)"default")));
+            info.push_back(InfoField("char","sexo",false,false,new Field()));
+            info.push_back(InfoField("booleano","tiempo_completo",false,false,new Field(false)));
 
             //Creacion de tabla
             Table *tab=new Table("Empleado\0",info);
@@ -185,8 +185,8 @@ public:
         {
             //Definicion de infocampos
             vector<InfoField>info;
-            info.push_back(InfoField("entero","codigo",false,false,Field(0)));
-            info.push_back(InfoField("entero","bono",false,false,Field(0)));
+            info.push_back(InfoField("entero","codigo",false,false,new Field(0)));
+            info.push_back(InfoField("entero","bono",false,false,new Field(0)));
 
             //Creacion de tabla
             Table *tab=new Table("Bono\0",info);
