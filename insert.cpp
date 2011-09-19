@@ -60,11 +60,12 @@ void Insert::ejecutar(StorageManagerM* smm)
     int j=0;
     for(int i=0;i<campos_a_proyectar.size();i++)
     {
-        if(valores[j].tipo!=table->info_fields[i].tipo)
+        if(valores[j].tipo!=table->info_fields[campos_a_proyectar[i]].tipo)
         {
             cout<<"Los tipos de valores no corresponen."<<endl;
             return;
         }
+        j++;
     }
 
     //Creacion de campos rellenados con el valor default
@@ -75,6 +76,8 @@ void Insert::ejecutar(StorageManagerM* smm)
     j=0;
     for(int i=0;i<campos_a_proyectar.size();i++)
     {
+        if(valores[j].tipo=="null")
+            fields[campos_a_proyectar[i]]=new Field();
         if(valores[j].tipo=="entero")
             fields[campos_a_proyectar[i]]=new Field(getInt(valores[j].valor));
         if(valores[j].tipo=="varchar")
@@ -85,8 +88,23 @@ void Insert::ejecutar(StorageManagerM* smm)
             fields[campos_a_proyectar[i]]=new Field(getBool(valores[j].valor));
         j++;
     }
-    //Insertacion de registro
+    //Creacion del registro
     Reccord* reg=new Reccord(fields);
+    //Validacion de acepacion de nulls
+    for(int j=0;j<table->info_fields.size();j++)
+        if((!(table->info_fields[j].acepta_null)) && reg->fields[j]->tipo=="null")
+        {
+            cout<<"Error: El registro conitiene nulls invalidos."<<endl;
+            return;
+        }
+    //Validacion de PKs
+    bool pk_valido=cumplePK(reg,table,-1);
+    if(!pk_valido)
+    {
+        cout<<"Error: existe una violacion de PKs."<<endl;
+        return;
+    }
+    //Insertacion de registro
     table->insertReccord(reg);
     cout<<"Registro insertdo con exito."<<endl;
 }

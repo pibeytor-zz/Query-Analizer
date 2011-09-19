@@ -44,6 +44,42 @@ public:
         }
         return -3;
     }
+
+    int eval(Field* f,Field* f2)
+    {
+        if(f->tipo!=f2->tipo)
+            return -2;
+        if(f->tipo=="varchar")
+        {
+            if(f->varchar==f2->varchar)
+                return 0;
+            return -1;
+        }
+        if(f->tipo=="booleano")
+        {
+            if(f->booleano==f2->booleano)
+                return 0;
+            return -1;
+        }
+        if(f->tipo=="entero")
+        {
+            if(f->entero<f2->entero)
+                return -1;
+            if(f->entero>f2->entero)
+                return 1;
+            return 0;
+        }
+        if(f->tipo=="char")
+        {
+            if(f->caracter<f2->caracter)
+                return -1;
+            if(f->caracter>f2->caracter)
+                return 1;
+            return 0;
+        }
+        return -3;
+    }
+
     string getString(string valor)
     {
         string resultado="";
@@ -99,6 +135,25 @@ public:
                 resultado=actual;
         }
         return resultado;
+    }
+    bool cumplePK(Reccord *r,Reccord *rtabla,vector<InfoField>ifs)
+    {
+        int i;
+        for(i=0;i<ifs.size();i++)
+            if( ifs[i].pk && eval(r->fields[i],rtabla->fields[i])!=0 )
+                    return true;
+        return false;
+    }
+    bool cumplePK(Reccord *r, Table *table,int ignorarme)
+    {
+        for(int i=0;i<table->reccords.size();i++)
+        {
+            if(i==ignorarme)
+                continue;
+            if(!cumplePK(r,table->reccords[i],table->info_fields))
+                return false;
+        }
+        return true;
     }
 };
 

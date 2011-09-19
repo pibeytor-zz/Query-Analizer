@@ -110,6 +110,8 @@ bool Lexico::esId(string a)
 
 Token Lexico::getTipo(string lexema)
 {
+    if(unsensitiveCompare(lexema,"null"))
+        return Token("null","null");
     if(unsensitiveCompare(lexema,"true"))
         return Token("booleano","true");
     if(unsensitiveCompare(lexema,"false"))

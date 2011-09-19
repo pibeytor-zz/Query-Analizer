@@ -33,7 +33,7 @@ public:
 	}
     Field()
     {
-        tipo="NULL";
+        tipo="null";
     }
 };
 
@@ -153,10 +153,10 @@ public:
         {
             //Definicion de infocampos
             vector<InfoField>info;
-            info.push_back(InfoField("entero","codigo",false,false,new Field(0)));
-            info.push_back(InfoField("varchar","nombre",false,false,new Field((string)"default")));
-            info.push_back(InfoField("char","sexo",false,false,new Field()));
-            info.push_back(InfoField("booleano","tiempo_completo",false,false,new Field(false)));
+            info.push_back(InfoField("entero","codigo",true,false,new Field()));
+            info.push_back(InfoField("varchar","nombre",false,true,new Field((string)"default")));
+            info.push_back(InfoField("char","sexo",false,true,new Field()));
+            info.push_back(InfoField("booleano","tiempo_completo",true,true,new Field(false)));
 
             //Creacion de tabla
             Table *tab=new Table("Empleado\0",info);
@@ -186,7 +186,7 @@ public:
             //Definicion de infocampos
             vector<InfoField>info;
             info.push_back(InfoField("entero","codigo",false,false,new Field(0)));
-            info.push_back(InfoField("entero","bono",false,false,new Field(0)));
+            info.push_back(InfoField("entero","bono",false,true,new Field(0)));
 
             //Creacion de tabla
             Table *tab=new Table("Bono\0",info);

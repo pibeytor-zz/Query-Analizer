@@ -422,7 +422,7 @@ bool Sintactico::valor()
 {
     Token t=getToken();
     arbol_valor=Valor(t.lexema,t.tipo);
-    if(t.tipo!="entero" && t.tipo!="decimal" && t.tipo!="char" && t.tipo!="varchar" && t.tipo!="booleano")
+    if(t.tipo!="entero" && t.tipo!="decimal" && t.tipo!="char" && t.tipo!="varchar" && t.tipo!="booleano" && t.tipo!="null")
         return false;
     return true;
 }
